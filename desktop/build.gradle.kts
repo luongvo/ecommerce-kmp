@@ -2,6 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.compose")
     id("org.jetbrains.compose")
 }
 
@@ -9,10 +10,7 @@ group = "vn.luongvo"
 version = "1.0-SNAPSHOT"
 
 kotlin {
-    jvm {
-        jvmToolchain(11)
-        withJava()
-    }
+    jvm {}
     sourceSets {
         val jvmMain by getting {
             dependencies {

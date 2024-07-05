@@ -1,5 +1,9 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
+
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.compose")
     id("com.android.library")
     id("org.jetbrains.compose")
     kotlin("plugin.serialization")
@@ -40,9 +44,10 @@ kotlin {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.7.0-alpha07")
 
                 // Ktor
                 val ktorVersion = extra["ktor.version"] as String
@@ -72,6 +77,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(compose.uiTooling)
+
                 val ktorVersion = extra["ktor.version"] as String
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
             }
@@ -100,8 +107,9 @@ kotlin {
 }
 
 android {
+    compileSdk = 34
     namespace = "vn.luongvo.kmp.ecommerce"
-    compileSdk = 33
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 24
     }

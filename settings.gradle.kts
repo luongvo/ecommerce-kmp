@@ -12,9 +12,11 @@ pluginManagement {
 
         kotlin("jvm").version(kotlinVersion)
         kotlin("multiplatform").version(kotlinVersion)
+        kotlin("plugin.compose").version(kotlinVersion)
         kotlin("plugin.serialization").version(kotlinVersion)
         kotlin("android").version(kotlinVersion)
 
+        id("com.android.base").version(gradleVersion)
         id("com.android.application").version(gradleVersion)
         id("com.android.library").version(gradleVersion)
 

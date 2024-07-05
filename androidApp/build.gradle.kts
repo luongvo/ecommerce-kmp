@@ -1,11 +1,24 @@
 plugins {
+    kotlin("multiplatform")
+    kotlin("plugin.compose")
     id("com.android.application")
-    kotlin("android")
+    id("org.jetbrains.compose")
+}
+
+kotlin {
+    androidTarget()
+    sourceSets {
+        val androidMain by getting {
+            dependencies {
+                implementation(project(":shared"))
+            }
+        }
+    }
 }
 
 android {
     namespace = "vn.luongvo.kmp.ecommerce.android"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "vn.luongvo.kmp.ecommerce.android"
         minSdk = 24
@@ -30,11 +43,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
+    kotlin {
+        jvmToolchain(17)
     }
 }
 
