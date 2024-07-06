@@ -23,7 +23,7 @@ fun HomeScreenContent() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Home",
+            text = "Welcome, Lucas! What are you looking for?",
             modifier = Modifier
                 .padding(all = dimensions.spacingMedium)
         )
