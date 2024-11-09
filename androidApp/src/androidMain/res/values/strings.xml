@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ecommerce-kmp</string>
+
+    <string name="bottom_nav_account">Account</string>
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_menu">Menu</string>
+    <string name="bottom_nav_orders">Orders</string>
+</resources>
