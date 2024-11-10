@@ -1,6 +1,8 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.compose")
     id("com.android.library")
+    id("org.jetbrains.compose")
     kotlin("plugin.serialization")
 }
 
@@ -37,6 +39,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
+                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.7.0-alpha07")
+                implementation("io.github.qdsfdhvh:image-loader:1.9.0")
+
                 // Ktor
                 val ktorVersion = extra["ktor.version"] as String
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
@@ -65,6 +75,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(compose.uiTooling)
+
                 val ktorVersion = extra["ktor.version"] as String
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
             }

@@ -34,4 +34,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ecommerce-kmp"
 include(":androidApp")
+include(":desktop")
 include(":shared")
