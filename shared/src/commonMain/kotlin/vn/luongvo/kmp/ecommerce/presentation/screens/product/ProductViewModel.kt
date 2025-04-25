@@ -1,5 +1,6 @@
-package vn.luongvo.kmp.ecommerce.presentation.screens.main.menu
+package vn.luongvo.kmp.ecommerce.presentation.screens.product
 
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -9,23 +10,24 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import vn.luongvo.kmp.ecommerce.data.api.getPhotos
-import vn.luongvo.kmp.ecommerce.data.model.MenuResponse
+import vn.luongvo.kmp.ecommerce.data.api.getProduct
+import vn.luongvo.kmp.ecommerce.presentation.models.ProductModel
+import vn.luongvo.kmp.ecommerce.presentation.models.toModel
 
-data class MenuState(
+data class ProductState(
     val isLoading: Boolean,
-    val menus: List<MenuResponse> = emptyList(),
+    val product: ProductModel? = null,
     val error: String? = null,
 )
 
-class MenuViewModel {
+class ProductViewModel : ViewModel() {
 
     private val viewModelScope = CoroutineScope(Dispatchers.IO)
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         runBlocking {
             _stateFlow.emit(
-                MenuState(
+                ProductState(
                     isLoading = false,
                     error = throwable.message.orEmpty()
                 )
@@ -33,15 +35,15 @@ class MenuViewModel {
         }
     }
 
-    private val _stateFlow = MutableStateFlow(MenuState(isLoading = true))
-    val stateFlow: StateFlow<MenuState> = _stateFlow.asStateFlow()
+    private val _stateFlow = MutableStateFlow(ProductState(isLoading = true))
+    val stateFlow: StateFlow<ProductState> = _stateFlow.asStateFlow()
 
-    fun loadMenus() = viewModelScope.launch(exceptionHandler) {
-        val response = getPhotos()
+    fun loadProduct(productId: String) = viewModelScope.launch(exceptionHandler) {
+        val response = getProduct(productId)
         _stateFlow.emit(
-            MenuState(
+            ProductState(
                 isLoading = false,
-                menus = response
+                product = response.toModel()
             )
         )
     }

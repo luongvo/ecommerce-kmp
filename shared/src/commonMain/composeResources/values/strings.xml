@@ -1,6 +1,10 @@
 <resources>
     <string name="bottom_nav_account">Account</string>
     <string name="bottom_nav_home">Home</string>
-    <string name="bottom_nav_menu">Menu</string>
+    <string name="bottom_nav_products">Products</string>
     <string name="bottom_nav_orders">Orders</string>
+
+    <string name="product_add_to_cart">Add to cart - %1$s</string>
+    <string name="product_rating">Rating %1$s</string>
+    <string name="product_view">View %1$s</string>
 </resources>

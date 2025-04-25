@@ -5,26 +5,39 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import vn.luongvo.kmp.ecommerce.presentation.models.ProductModel
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.AccountAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.HomeAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.OrdersAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.ProductsAppDestination
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.account.AccountScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.home.HomeScreen
-import vn.luongvo.kmp.ecommerce.presentation.screens.main.menu.MenuScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.orders.OrdersScreen
+import vn.luongvo.kmp.ecommerce.presentation.screens.main.products.ProductsScreen
+import vn.luongvo.kmp.ecommerce.presentation.screens.main.products.ProductsViewModel
+
+// TODO provide via DI
+val productsViewModel = ProductsViewModel()
 
 @Composable
 fun MainBottomNavGraph(
-    navHostController: NavHostController,
+    navController: NavHostController,
+    onNavigateToProduct: (ProductModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
-        navController = navHostController,
-        startDestination = HomeAppDestination.Home.destination,
+        navController = navController,
+        startDestination = ProductsAppDestination.Products.destination,
         modifier = modifier,
     ) {
         composable(HomeAppDestination.Home.route) {
             HomeScreen()
         }
-        composable(MenuAppDestination.Menu.route) {
-            MenuScreen()
+        composable(ProductsAppDestination.Products.route) {
+            ProductsScreen(
+                onProductClick = onNavigateToProduct,
+                viewModel = productsViewModel,
+            )
         }
         composable(OrdersAppDestination.Orders.route) {
             OrdersScreen()

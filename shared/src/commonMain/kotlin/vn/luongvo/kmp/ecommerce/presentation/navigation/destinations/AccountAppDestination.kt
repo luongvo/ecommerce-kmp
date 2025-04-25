@@ -1,4 +1,4 @@
-package vn.luongvo.kmp.ecommerce.presentation.navigation
+package vn.luongvo.kmp.ecommerce.presentation.navigation.destinations
 
 import vn.luongvo.kmp.ecommerce.presentation.base.BaseAppDestination
 
