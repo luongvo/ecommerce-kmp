@@ -1,5 +1,6 @@
 package vn.luongvo.kmp.ecommerce.presentation.screens.main.products
 
+import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,7 @@ data class ProductsState(
     val error: String? = null,
 )
 
-class ProductsViewModel {
+class ProductsViewModel : ViewModel() {
 
     private val viewModelScope = CoroutineScope(Dispatchers.IO)
 

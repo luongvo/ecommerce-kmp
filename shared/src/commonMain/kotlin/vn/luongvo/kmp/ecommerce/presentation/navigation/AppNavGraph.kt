@@ -11,6 +11,10 @@ import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.ProductIdKe
 import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.ProductsAppDestination
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.MainScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.product.ProductScreen
+import vn.luongvo.kmp.ecommerce.presentation.screens.product.ProductViewModel
+
+// TODO provide via DI
+val productViewModel = ProductViewModel()
 
 @Composable
 fun AppNavGraph(
@@ -32,7 +36,11 @@ fun AppNavGraph(
         composable(ProductsAppDestination.Product.route) { backStackEntry ->
             val productId = backStackEntry.arguments?.getString(ProductIdKey).orEmpty()
 
-            ProductScreen(productId)
+            ProductScreen(
+                productId = productId,
+                onClickBack = navController::navigateUp,
+                viewModel = productViewModel,
+            )
         }
     }
 }

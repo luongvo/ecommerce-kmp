@@ -14,6 +14,10 @@ import vn.luongvo.kmp.ecommerce.presentation.screens.main.account.AccountScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.home.HomeScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.orders.OrdersScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.products.ProductsScreen
+import vn.luongvo.kmp.ecommerce.presentation.screens.main.products.ProductsViewModel
+
+// TODO provide via DI
+val productsViewModel = ProductsViewModel()
 
 @Composable
 fun MainBottomNavGraph(
@@ -23,7 +27,7 @@ fun MainBottomNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = HomeAppDestination.Home.destination,
+        startDestination = ProductsAppDestination.Products.destination,
         modifier = modifier,
     ) {
         composable(HomeAppDestination.Home.route) {
@@ -32,6 +36,7 @@ fun MainBottomNavGraph(
         composable(ProductsAppDestination.Products.route) {
             ProductsScreen(
                 onProductClick = onNavigateToProduct,
+                viewModel = productsViewModel,
             )
         }
         composable(OrdersAppDestination.Orders.route) {

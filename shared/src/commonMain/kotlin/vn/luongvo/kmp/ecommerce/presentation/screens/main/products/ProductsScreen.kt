@@ -104,10 +104,10 @@ fun ProductsScreenContent(
                                 ),
                                 modifier = Modifier
                                     .background(color = Color.Gray, shape = RoundedCornerShape(20.dp))
-                                    .padding(4.dp)
+                                    .padding(dimensions.spacing2XSmall)
                             )
 
-                            Spacer(modifier = Modifier.height(8.dp))
+                            Spacer(modifier = Modifier.height(dimensions.spacingXSmall))
 
                             Text(
                                 text = "$${product.price}",

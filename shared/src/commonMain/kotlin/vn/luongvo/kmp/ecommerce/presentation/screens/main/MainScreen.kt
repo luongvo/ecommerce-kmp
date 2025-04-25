@@ -17,11 +17,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import ecommerce_kmp.shared.generated.resources.Res
 import ecommerce_kmp.shared.generated.resources.bottom_nav_account
-import ecommerce_kmp.shared.generated.resources.bottom_nav_home
 import ecommerce_kmp.shared.generated.resources.bottom_nav_orders
 import ecommerce_kmp.shared.generated.resources.bottom_nav_products
 import ecommerce_kmp.shared.generated.resources.ic_nav_account
-import ecommerce_kmp.shared.generated.resources.ic_nav_home
 import ecommerce_kmp.shared.generated.resources.ic_nav_orders
 import ecommerce_kmp.shared.generated.resources.ic_nav_products
 import org.jetbrains.compose.resources.DrawableResource
@@ -31,7 +29,6 @@ import vn.luongvo.kmp.ecommerce.presentation.base.BaseAppDestination
 import vn.luongvo.kmp.ecommerce.presentation.models.ProductModel
 import vn.luongvo.kmp.ecommerce.presentation.navigation.MainBottomNavGraph
 import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.AccountAppDestination
-import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.HomeAppDestination
 import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.OrdersAppDestination
 import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.ProductsAppDestination
 
@@ -41,11 +38,11 @@ fun MainScreen(
 ) {
     val bottomNavController: NavHostController = rememberNavController()
     val bottomNavItems = listOf(
-        AppBottomNavItem(
-            title = stringResource(Res.string.bottom_nav_home),
-            iconRes = Res.drawable.ic_nav_home,
-            appDestination = HomeAppDestination.Home,
-        ),
+//        AppBottomNavItem(
+//            title = stringResource(Res.string.bottom_nav_home),
+//            iconRes = Res.drawable.ic_nav_home,
+//            appDestination = HomeAppDestination.Home,
+//        ),
         AppBottomNavItem(
             title = stringResource(Res.string.bottom_nav_products),
             iconRes = Res.drawable.ic_nav_products,
