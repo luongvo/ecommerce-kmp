@@ -30,7 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.seiko.imageloader.rememberImagePainter
-import vn.luongvo.kmp.ecommerce.data.model.ProductResponse
+import vn.luongvo.kmp.ecommerce.presentation.models.ProductModel
 import vn.luongvo.kmp.ecommerce.presentation.theme.AppTheme.dimensions
 
 @Composable
@@ -53,7 +53,7 @@ fun ProductsScreen(
 @Composable
 fun ProductsScreenContent(
     isLoading: Boolean,
-    products: List<ProductResponse>,
+    products: List<ProductModel>,
     error: String?,
 ) {
     Column(
@@ -84,17 +84,17 @@ fun ProductsScreenContent(
                             .padding(dimensions.spacingMedium)
                     ) {
                         Image(
-                            painter = rememberImagePainter(product.image.orEmpty()),
+                            painter = rememberImagePainter(product.image),
                             contentDescription = null,
                             modifier = Modifier.size(100.dp)
                         )
 
                         Column {
                             Text(
-                                text = product.title.orEmpty(),
+                                text = product.title,
                             )
                             Text(
-                                text = product.category.orEmpty(),
+                                text = product.category,
                                 style = TextStyle(
                                     fontSize = 10.sp,
                                     color = Color.White,

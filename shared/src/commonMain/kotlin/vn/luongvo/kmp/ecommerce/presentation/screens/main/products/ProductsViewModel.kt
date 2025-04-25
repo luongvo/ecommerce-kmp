@@ -10,11 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import vn.luongvo.kmp.ecommerce.data.api.getProducts
-import vn.luongvo.kmp.ecommerce.data.model.ProductResponse
+import vn.luongvo.kmp.ecommerce.presentation.models.ProductModel
+import vn.luongvo.kmp.ecommerce.presentation.models.toModel
 
 data class ProductsState(
     val isLoading: Boolean,
-    val products: List<ProductResponse> = emptyList(),
+    val products: List<ProductModel> = emptyList(),
     val error: String? = null,
 )
 
@@ -41,7 +42,7 @@ class ProductsViewModel {
         _stateFlow.emit(
             ProductsState(
                 isLoading = false,
-                products = response
+                products = response.map { it.toModel() }
             )
         )
     }
