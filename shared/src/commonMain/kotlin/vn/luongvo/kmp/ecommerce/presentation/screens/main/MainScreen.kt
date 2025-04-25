@@ -28,14 +28,17 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import vn.luongvo.kmp.ecommerce.presentation.base.BaseAppDestination
-import vn.luongvo.kmp.ecommerce.presentation.navigation.AccountAppDestination
-import vn.luongvo.kmp.ecommerce.presentation.navigation.HomeAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.models.ProductModel
 import vn.luongvo.kmp.ecommerce.presentation.navigation.MainBottomNavGraph
-import vn.luongvo.kmp.ecommerce.presentation.navigation.OrdersAppDestination
-import vn.luongvo.kmp.ecommerce.presentation.navigation.ProductsAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.AccountAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.HomeAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.OrdersAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.ProductsAppDestination
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    onNavigateToProduct: (ProductModel) -> Unit,
+) {
     val bottomNavController: NavHostController = rememberNavController()
     val bottomNavItems = listOf(
         AppBottomNavItem(
@@ -78,7 +81,8 @@ fun MainScreen() {
         }
     ) { innerPadding ->
         MainBottomNavGraph(
-            navHostController = bottomNavController,
+            navController = bottomNavController,
+            onNavigateToProduct = onNavigateToProduct,
 //                    modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()),
         )
     }

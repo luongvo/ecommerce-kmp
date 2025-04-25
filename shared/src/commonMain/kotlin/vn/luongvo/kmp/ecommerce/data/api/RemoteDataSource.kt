@@ -10,3 +10,6 @@ suspend fun getPosts(): List<PostResponse> =
 
 suspend fun getProducts(): List<ProductResponse> =
     httpClient.get("products").body<List<ProductResponse>>()
+
+suspend fun getProduct(productId: String): ProductResponse =
+    httpClient.get("products/$productId").body<ProductResponse>()

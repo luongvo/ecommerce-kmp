@@ -1,6 +1,10 @@
 package vn.luongvo.kmp.ecommerce.presentation.base
 
+import androidx.navigation.NamedNavArgument
+
 abstract class BaseAppDestination(val route: String = "") {
+
+    open val arguments: List<NamedNavArgument> = emptyList()
 
     open var destination: String = route
 

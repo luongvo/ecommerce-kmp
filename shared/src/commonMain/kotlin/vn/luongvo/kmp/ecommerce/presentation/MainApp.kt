@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import vn.luongvo.kmp.ecommerce.presentation.screens.main.MainScreen
+import vn.luongvo.kmp.ecommerce.presentation.navigation.AppNavGraph
 import vn.luongvo.kmp.ecommerce.presentation.theme.AppTheme
 import vn.luongvo.kmp.ecommerce.presentation.theme.ComposeTheme
 
@@ -18,7 +18,7 @@ fun MainApp(
             modifier = modifier.fillMaxSize(),
             color = AppTheme.colors.themeColors.background,
         ) {
-            MainScreen()
+            AppNavGraph()
         }
     }
 }

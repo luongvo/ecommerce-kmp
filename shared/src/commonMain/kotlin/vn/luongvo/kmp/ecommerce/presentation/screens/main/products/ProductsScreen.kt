@@ -35,6 +35,7 @@ import vn.luongvo.kmp.ecommerce.presentation.theme.AppTheme.dimensions
 
 @Composable
 fun ProductsScreen(
+    onProductClick: (ProductModel) -> Unit,
     viewModel: ProductsViewModel = ProductsViewModel(),
 ) {
     val state by viewModel.stateFlow.collectAsState()
@@ -47,6 +48,7 @@ fun ProductsScreen(
         state.isLoading,
         state.products,
         state.error,
+        onProductClick = onProductClick,
     )
 }
 
@@ -55,6 +57,7 @@ fun ProductsScreenContent(
     isLoading: Boolean,
     products: List<ProductModel>,
     error: String?,
+    onProductClick: (ProductModel) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
@@ -79,7 +82,7 @@ fun ProductsScreenContent(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                // TODO
+                                onProductClick(product)
                             }
                             .padding(dimensions.spacingMedium)
                     ) {

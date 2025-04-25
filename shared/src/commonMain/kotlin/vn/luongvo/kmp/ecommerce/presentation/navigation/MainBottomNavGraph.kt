@@ -5,6 +5,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import vn.luongvo.kmp.ecommerce.presentation.models.ProductModel
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.AccountAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.HomeAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.OrdersAppDestination
+import vn.luongvo.kmp.ecommerce.presentation.navigation.destinations.ProductsAppDestination
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.account.AccountScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.home.HomeScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.orders.OrdersScreen
@@ -12,11 +17,12 @@ import vn.luongvo.kmp.ecommerce.presentation.screens.main.products.ProductsScree
 
 @Composable
 fun MainBottomNavGraph(
-    navHostController: NavHostController,
+    navController: NavHostController,
+    onNavigateToProduct: (ProductModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
-        navController = navHostController,
+        navController = navController,
         startDestination = HomeAppDestination.Home.destination,
         modifier = modifier,
     ) {
@@ -24,7 +30,9 @@ fun MainBottomNavGraph(
             HomeScreen()
         }
         composable(ProductsAppDestination.Products.route) {
-            ProductsScreen()
+            ProductsScreen(
+                onProductClick = onNavigateToProduct,
+            )
         }
         composable(OrdersAppDestination.Orders.route) {
             OrdersScreen()
