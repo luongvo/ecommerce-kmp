@@ -1,4 +1,4 @@
-package vn.luongvo.kmp.ecommerce.presentation.screens.main.menu
+package vn.luongvo.kmp.ecommerce.presentation.screens.main.products
 
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -9,23 +9,23 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import vn.luongvo.kmp.ecommerce.data.api.getPhotos
-import vn.luongvo.kmp.ecommerce.data.model.MenuResponse
+import vn.luongvo.kmp.ecommerce.data.api.getProducts
+import vn.luongvo.kmp.ecommerce.data.model.ProductResponse
 
-data class MenuState(
+data class ProductsState(
     val isLoading: Boolean,
-    val menus: List<MenuResponse> = emptyList(),
+    val products: List<ProductResponse> = emptyList(),
     val error: String? = null,
 )
 
-class MenuViewModel {
+class ProductsViewModel {
 
     private val viewModelScope = CoroutineScope(Dispatchers.IO)
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         runBlocking {
             _stateFlow.emit(
-                MenuState(
+                ProductsState(
                     isLoading = false,
                     error = throwable.message.orEmpty()
                 )
@@ -33,15 +33,15 @@ class MenuViewModel {
         }
     }
 
-    private val _stateFlow = MutableStateFlow(MenuState(isLoading = true))
-    val stateFlow: StateFlow<MenuState> = _stateFlow.asStateFlow()
+    private val _stateFlow = MutableStateFlow(ProductsState(isLoading = true))
+    val stateFlow: StateFlow<ProductsState> = _stateFlow.asStateFlow()
 
-    fun loadMenus() = viewModelScope.launch(exceptionHandler) {
-        val response = getPhotos()
+    fun loadProducts() = viewModelScope.launch(exceptionHandler) {
+        val response = getProducts()
         _stateFlow.emit(
-            MenuState(
+            ProductsState(
                 isLoading = false,
-                menus = response
+                products = response
             )
         )
     }

@@ -7,8 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.account.AccountScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.home.HomeScreen
-import vn.luongvo.kmp.ecommerce.presentation.screens.main.menu.MenuScreen
 import vn.luongvo.kmp.ecommerce.presentation.screens.main.orders.OrdersScreen
+import vn.luongvo.kmp.ecommerce.presentation.screens.main.products.ProductsScreen
 
 @Composable
 fun MainBottomNavGraph(
@@ -23,8 +23,8 @@ fun MainBottomNavGraph(
         composable(HomeAppDestination.Home.route) {
             HomeScreen()
         }
-        composable(MenuAppDestination.Menu.route) {
-            MenuScreen()
+        composable(ProductsAppDestination.Products.route) {
+            ProductsScreen()
         }
         composable(OrdersAppDestination.Orders.route) {
             OrdersScreen()

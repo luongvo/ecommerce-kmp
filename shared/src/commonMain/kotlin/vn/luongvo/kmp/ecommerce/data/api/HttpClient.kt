@@ -79,7 +79,7 @@ fun HttpClientConfig<*>.errorHandlerConfig() {
 
 fun HttpClientConfig<*>.defaultRequestConfig() {
     defaultRequest {
-        url("https://jsonplaceholder.typicode.com")
+        url("https://fakestoreapi.com")
     }
 }
 
